@@ -1,4 +1,5 @@
 function getForm() {
+    
     var form = {
         ICType : 'Panel',
         ICElementNum : '0',
