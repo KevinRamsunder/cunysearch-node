@@ -1,5 +1,5 @@
 function getForm() {
-    
+
     var form = {
         ICType : 'Panel',
         ICElementNum : '0',
@@ -11,7 +11,7 @@ function getForm() {
         ICSaveWarningFilter : '0',
         ICChanged : '-1',
         ICResubmit : '0',
-        ICSID : 'LbW7ZLkhXs9G',
+        ICSID : 'QyWwfmKpk28K',
         ICModalWidget : '0',
         ICZoomGrid : '0',
         ICZoomGridRt : '0',
@@ -23,13 +23,13 @@ function getForm() {
         CLASS_SRCH_WRK2_STRM$45$ : '',
         SSR_CLSRCH_WRK_SUBJECT_SRCH$0 : '',
         SSR_CLSRCH_WRK_SSR_EXACT_MATCH1$1 : 'G',
-        SSR_CLSRCH_WRK_CATALOG_NBR$1 : '0',
+        SSR_CLSRCH_WRK_CATALOG_NBR$1 : '-1',
         SSR_CLSRCH_WRK_ACAD_CAREER$2 : '',
         SSR_CLSRCH_WRK_CRSE_ATTR$3 : '',
         SSR_CLSRCH_WRK_CRSE_ATTR_VALUE$3 : '',
         SSR_CLSRCH_WRK_CU_RQMNT_DESIGNTN$4 : '',
-        SSR_CLSRCH_WRK_SSR_OPEN_ONLY$chk$5 : 'Y',
-        SSR_CLSRCH_WRK_SSR_OPEN_ONLY$5 : 'Y',
+        SSR_CLSRCH_WRK_SSR_OPEN_ONLY$chk$5 : 'N',
+        SSR_CLSRCH_WRK_SSR_OPEN_ONLY$5 : 'N',
         SSR_CLSRCH_WRK_SESSION_CODE$6 : '',
         SSR_CLSRCH_WRK_INSTRUCTION_MODE$7 : '',
         SSR_CLSRCH_WRK_SSR_START_TIME_OPR$8 : 'GE',
