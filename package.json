@@ -1,13 +1,14 @@
 {
   "name": "cunysearch-node",
   "version": "1.0.0",
-  "description": "",
+  "description": "MEAN stack implementation of a cuny course search app",
   "main": "async.js",
   "dependencies": {
     "cheerio": "^0.19.0",
     "async": "^1.5.0",
     "express": "^4.13.3",
-    "request": "^2.65.0"
+    "request": "^2.65.0",
+    "form-data": "^0.2.0"
   },
   "devDependencies": {},
   "scripts": {
