@@ -1,3 +1,4 @@
+var qs = require('querystring');
 var request = require('request');
 var cheerio = require('cheerio');
 var FormData = require('form-data');
@@ -20,9 +21,9 @@ request.post(options, function(err, res, body) {
     var parsed = cheerio.load(body);
     var key = parsed('form[name=\'win0\']>input[name=\'ICSID\']').val();
 
-    formData = formTemplate.getForm(key, 'QNS01', '1159', 'CSCI');
-    options[formData] = formData;    
-    
+    formTemplate = formTemplate.getTemplate(key, 'QNS01', '1159', 'CSCI');
+    options[qs] = formTemplate;    
+
     request.post(options, function(err, res, body) {
         console.log(body);
     });
