@@ -1,17 +1,20 @@
-function getForm() {
+var FormData = require('form-data');
 
-    var form = {
+function getForm(key, inst, term, dept) {
+    var form = new FormData();
+
+    var fields = {
         ICType : 'Panel',
         ICElementNum : '0',
         ICStateNum : '3',
-        ICAction : 'CLASS_SRCH_WRK2_STRM$45$',
+        ICAction : 'CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH',
         ICXPos : '0',
         ICYPos : '0',
         ICFocus : '',
         ICSaveWarningFilter : '0',
         ICChanged : '-1',
         ICResubmit : '0',
-        ICSID : '',
+        ICSID : key,
         ICModalWidget : '0',
         ICZoomGrid : '0',
         ICZoomGridRt : '0',
@@ -19,11 +22,11 @@ function getForm() {
         ICActionPrompt : 'false',
         ICFind : '',
         ICAddCount : '',
-        CLASS_SRCH_WRK2_INSTITUTION$42$ : '',
-        CLASS_SRCH_WRK2_STRM$45$ : '',
-        SSR_CLSRCH_WRK_SUBJECT_SRCH$0 : '',
+        CLASS_SRCH_WRK2_INSTITUTION$42$ : inst,
+        CLASS_SRCH_WRK2_STRM$45$ : term,
+        SSR_CLSRCH_WRK_SUBJECT_SRCH$0 : dept,
         SSR_CLSRCH_WRK_SSR_EXACT_MATCH1$1 : 'G',
-        SSR_CLSRCH_WRK_CATALOG_NBR$1 : '-1',
+        SSR_CLSRCH_WRK_CATALOG_NBR$1 : '0',
         SSR_CLSRCH_WRK_ACAD_CAREER$2 : '',
         SSR_CLSRCH_WRK_CRSE_ATTR$3 : '',
         SSR_CLSRCH_WRK_CRSE_ATTR_VALUE$3 : '',
@@ -56,6 +59,10 @@ function getForm() {
         SSR_CLSRCH_WRK_SSR_EXACT_MATCH2$16 : 'B',
         SSR_CLSRCH_WRK_LAST_NAME$16 : ''
     };
+
+    for(var field in fields) {
+        form.append(field, fields[field]);
+    }
 
     return form;
 }
