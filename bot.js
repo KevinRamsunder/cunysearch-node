@@ -21,11 +21,7 @@ request.post(options, function(err, res, body) {
     var key = parsed('form[name=\'win0\']>input[name=\'ICSID\']').val();
 
     formData = formTemplate.getForm(key, 'QNS01', '1159', 'CSCI');
-    
-    console.log(options);
-    options[formData] = formData;
-    console.log(options);
-    return;
+    options[formData] = formData;    
     
     request.post(options, function(err, res, body) {
         console.log(body);
