@@ -20,15 +20,14 @@ request.post(options, function(err, res, body) {
     var parsed = cheerio.load(body);
     var key = parsed('form[name=\'win0\']>input[name=\'ICSID\']').val();
 
-    formData = formTemplate.getForm();
-    formData['ICSID'] = key;
-    formData['ICAction'] = 'CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH';
-    formData['CLASS_SRCH_WRK2_INSTITUTION$42$'] = 'QNS01';
-    formData['CLASS_SRCH_WRK2_STRM$45$'] = '1162';
-    formData['SSR_CLSRCH_WRK_SUBJECT_SRCH$0'] = 'CSCI';
-    options[formData] = formData; 
-});
-
-request.post(options, function(err, res, body) {
-    console.log(body);
+    formData = formTemplate.getForm(key, 'QNS01', '1159', 'CSCI');
+    
+    console.log(options);
+    options[formData] = formData;
+    console.log(options);
+    return;
+    
+    request.post(options, function(err, res, body) {
+        console.log(body);
+    });
 });
