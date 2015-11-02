@@ -18,5 +18,18 @@ request.post(options, function(err, res, body) {
     
     var parsed = cheerio.load(body);
     var key = parsed('form[name=\'win0\']>input[name=\'ICSID\']').val();
-    formData = formTemplate.getTemplate(key, 'QNS01', '1159', 'CSCI');
+    formData = formTemplate.getTemplate(key, 'QNS01', '1162', 'CSCI');
+
+    var submit_options = {
+        url: 'https://hrsa.cunyfirst.cuny.edu/psc/cnyhcprd/GUEST/HRMS/c/COMMUNITY_ACCESS.CLASS_SEARCH.GBL',
+        form: qs.stringify(formTemplate.getTemplate(key, 'QNS01', '1162', 'CSCI')),
+        headers: options.headers,
+        jar: options.jar
+    };
+
+    request.post(submit_options, function(err, res, body) {
+        request.post(submit_options, function(err, res, body) {
+            console.log(body);
+        });
+    });
 });

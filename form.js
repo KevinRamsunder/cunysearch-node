@@ -6,7 +6,7 @@ function getForm(key, inst, term, dept) {
     var fields = {
         ICType : 'Panel',
         ICElementNum : '0',
-        ICStateNum : '3',
+        ICStateNum : '2',
         ICAction : 'CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH',
         ICXPos : '0',
         ICYPos : '0',
@@ -71,7 +71,7 @@ function getTemplate(key, inst, term, dept) {
     var fields = {
         ICType : 'Panel',
         ICElementNum : '0',
-        ICStateNum : '3',
+        ICStateNum : '2',
         ICAction : 'CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH',
         ICXPos : '0',
         ICYPos : '0',
