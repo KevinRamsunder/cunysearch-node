@@ -1,7 +1,7 @@
 var async = require('async');
 var Bot = require('./bot');
 
-ASYNC_TASK_LIMIT = 10;
+ASYNC_TASK_LIMIT = 100;
 
 var queue = async.queue(function(task, callback) {
     console.log('touched');
