@@ -4,8 +4,6 @@ var Bot = require('./bot');
 ASYNC_TASK_LIMIT = 100;
 
 var queue = async.queue(function(task, callback) {
-    console.log('touched');
-
     var bot = new Bot.Bot();
     bot.submitSearch(task.inst, task.term, task.dept);
 
