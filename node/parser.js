@@ -11,6 +11,16 @@ function parseResultBody(body) {
     var room = resultsToArray($, 'span[id^=MTG_ROOM]');
     var time = resultsToArray($, 'span[id^=MTG_DAYTIME]');
     var instructors = resultsToArray($, 'span[id^=MTG_INSTR]');
+
+    for (i = 0; i < headings.length; i++) {
+        var heading = getHeadingInfo(i);
+        // create class structure
+
+    }
+}
+
+function getHeadingInfo(body) {
+
 }
 
 function resultsToArray(body, parseString) {
