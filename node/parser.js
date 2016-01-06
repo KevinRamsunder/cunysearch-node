@@ -15,7 +15,6 @@ function parseResultBody(body) {
     for (i = 0; i < headings.length; i++) {
         var heading = getHeadingInfo(i);
         // create class structure
-
     }
 }
 
