@@ -1,7 +1,7 @@
 var cheerio = require('cheerio');
 
 var Structure = function() {
-	this.classHeadings = [];
+    this.classHeadings = [];
 };
 
 Structure.prototype.createSectionHeader = function(chp) {
