@@ -17,7 +17,4 @@ EnrollmentParser.prototype.getEnrollment = function() {
     return object;
 };
 
-var Parser = function(html) {
-    var rpp = new models.ResultPageParser(html);
-    this.classStructure = new Structure();
-};
+module.exports = EnrollmentParser;
