@@ -63,4 +63,4 @@ function getTemplate(key, inst, term, dept) {
 
 module.exports = {
     getTemplate: getTemplate
-}
+};

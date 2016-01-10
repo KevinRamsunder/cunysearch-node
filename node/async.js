@@ -1,10 +1,10 @@
 var async = require('async');
-var Bot = require('./bot');
+var bot = require('./bot');
 
 ASYNC_TASK_LIMIT = 100;
 
 var queue = async.queue(function(task, callback) {
-    var bot = new Bot.Bot();
+    var bot = new bot.Bot();
     bot.submitSearch(task.inst, task.term, task.dept);
 
     callback(task);
@@ -13,4 +13,4 @@ var queue = async.queue(function(task, callback) {
 
 module.exports = {
     queue: queue
-}
+};

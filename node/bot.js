@@ -4,7 +4,7 @@ var cheerio = require('cheerio');
 var FormData = require('form-data');
 var formTemplate = require('./form');
 var config = require('./config.js');
-var parser = require('./parser.js');
+var parser = require('./models.js');
 
 var Bot = function() {};
 
@@ -41,5 +41,5 @@ Bot.prototype.submitSearch = function(inst, term, dept) {
 
 
 module.exports = {
-    Bot: Bot
-}
+    bot: Bot
+};
