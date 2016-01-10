@@ -25,5 +25,5 @@ Structure.prototype.getClassSection = function(index1, index2) {
 };
 
 module.exports = {
-    Structure: Structure
-}
+    structure: Structure
+};
