@@ -4,7 +4,6 @@ var cheerio = require('cheerio');
 var FormData = require('form-data');
 var formTemplate = require('./form');
 var config = require('./config.js');
-var parser = require('./models.js');
 
 var Bot = function() {};
 
@@ -33,13 +32,10 @@ Bot.prototype.submitSearch = function(inst, term, dept) {
 
         request.post(submit_options, function(err, res, body) {
             request.post(submit_options, function(err, res, body) {
-                parser.parseResultBody(body);
+                // parser.parseResultBody(body);
             });
         });
     });
 };
 
-
-module.exports = {
-    bot: Bot
-};
+module.exports = Bot;

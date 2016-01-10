@@ -1,6 +1,6 @@
 var cheerio = require('cheerio');
-var structure = require('./structure.js');
-var models = require('./models.js');
+var Structure = require('./structure.js');
+var ResultPageParser = require('./result-page-parser.js');
 
 var EnrollmentParser = function(html) {
     var parser = new EnrollmentInfoParser(html);
@@ -19,5 +19,5 @@ EnrollmentParser.prototype.getEnrollment = function() {
 
 var Parser = function(html) {
     var rpp = new models.ResultPageParser(html);
-    this.classStructure = new structure.Structure();
+    this.classStructure = new Structure();
 };

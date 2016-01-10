@@ -24,6 +24,4 @@ Structure.prototype.getClassSection = function(index1, index2) {
     return this.classHeadings[index1].classes[index2];
 };
 
-module.exports = {
-    structure: Structure
-};
+module.exports = Structure;

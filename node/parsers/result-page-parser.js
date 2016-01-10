@@ -54,10 +54,6 @@ ResultPageParser.prototype.getInstr = function() {
     return this.instr[this.parseCounter];
 };
 
-function parseResultBody() {
-
-}
-
 function resultsToArray(body, parseString) {
     var results = body(parseString);
     var resultsArray = [];
@@ -69,7 +65,4 @@ function resultsToArray(body, parseString) {
     return resultsArray;
 }
 
-module.exports = {
-    parseResultBody: parseResultBody,
-    ResultPageParser: ResultPageParser
-};
+module.exports = ResultPageParser;
