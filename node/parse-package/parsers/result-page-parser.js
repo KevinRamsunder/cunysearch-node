@@ -2,6 +2,7 @@ var cheerio = require('cheerio');
 
 var ResultPageParser = function(body) {
     this.$ = cheerio.load(body);
+
     this.parseCounter = 0;
     this.headings = resultsToArray(this.$, 'div[id^=win0divGPSSR_CLSRSLT_WRK_GROUPBOX2]');
     this.classesPerHeadings = resultsToArray(this.$, 'table[id^=\'ACE_$ICField104\']');
@@ -50,7 +51,7 @@ ResultPageParser.prototype.getTime = function() {
 };
 
 ResultPageParser.prototype.getInstr = function() {
-    return this.instr[this.parseCounter];
+    return this.instructors[this.parseCounter];
 };
 
 function resultsToArray(body, parseString) {
@@ -58,7 +59,7 @@ function resultsToArray(body, parseString) {
     var resultsArray = [];
 
     results.each(function(i, elem) {
-        resultsArray[i] = body(this).html();
+        resultsArray[i] = body(this);
     });
 
     return resultsArray;

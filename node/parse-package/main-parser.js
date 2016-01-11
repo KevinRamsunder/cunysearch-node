@@ -100,6 +100,6 @@ fs.readFile('./output.txt', 'utf-8', function(err, data) {
         return;
     } else {
         var p = new Parser(data);
-        //p.printClassStructure();
+        p.printClassStructure();
     }
 });
