@@ -16,8 +16,8 @@ function resultsToArray(body, parseString) {
     var results = body(parseString);
     var resultsArray = [];
 
-    results.each(function(i) {
-        resultsArray[i] = $(this).text().trim();
+    results.each(function(i, elem) {
+        resultsArray[i] = body(this).text().trim();
     });
 
     return resultsArray;

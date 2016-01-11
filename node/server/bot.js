@@ -32,7 +32,7 @@ Bot.prototype.submitSearch = function(inst, term, dept) {
 
         request.post(submit_options, function(err, res, body) {
             request.post(submit_options, function(err, res, body) {
-                // parser.parseResultBody(body);
+                console.log(body);
             });
         });
     });

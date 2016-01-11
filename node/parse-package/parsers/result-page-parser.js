@@ -2,7 +2,6 @@ var cheerio = require('cheerio');
 
 var ResultPageParser = function(body) {
     this.$ = cheerio.load(body);
-
     this.parseCounter = 0;
     this.headings = resultsToArray(this.$, 'div[id^=win0divGPSSR_CLSRSLT_WRK_GROUPBOX2]');
     this.classesPerHeadings = resultsToArray(this.$, 'table[id^=\'ACE_$ICField104\']');
@@ -23,11 +22,11 @@ ResultPageParser.prototype.headingSize = function() {
 };
 
 ResultPageParser.prototype.getHeadings = function() {
-    return self.headings[self.parseCounter];
+    return this.headings[this.parseCounter];
 };
 
 ResultPageParser.prototype.getClassesPerHeading = function() {
-    return self.getClassesPerHeading[this.parseCounter];
+    return this.getClassesPerHeading[this.parseCounter];
 };
 
 ResultPageParser.prototype.getNbr = function() {
@@ -58,8 +57,8 @@ function resultsToArray(body, parseString) {
     var results = body(parseString);
     var resultsArray = [];
 
-    results.each(function(i) {
-        resultsArray[i] = $(this).text().trim();
+    results.each(function(i, elem) {
+        resultsArray[i] = body(this).html();
     });
 
     return resultsArray;
