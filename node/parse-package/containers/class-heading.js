@@ -1,5 +1,5 @@
 var ClassHeading = function(chp) {
-    this.title = chp.title.text();
+    this.title = chp.title;
     this.quantity = chp.quantity;
     this.classes = [];
 };

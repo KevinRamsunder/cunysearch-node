@@ -2,8 +2,7 @@ var cheerio = require('cheerio');
 
 var ClassHeadingParser = function(title, quantity) {
     this.title = title;
-    this.$ = cheerio.load(quantity);
-    this.quantity = quantity.children().length;
+    this.quantity = quantity;
 };
 
 function resultsToArray(body, parseString) {

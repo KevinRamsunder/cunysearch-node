@@ -4,14 +4,18 @@ var ResultPageParser = function(body) {
     this.$ = cheerio.load(body);
 
     this.parseCounter = 0;
-    this.headings = resultsToArray(this.$, 'div[id^=win0divGPSSR_CLSRSLT_WRK_GROUPBOX2]');
-    this.classesPerHeadings = resultsToArray(this.$, 'table[id^=\'ACE_$ICField104\']');
-    this.nbr = resultsToArray(this.$, 'a[id^=MTG_CLASS_NBR]');
-    this.section = resultsToArray(this.$, 'a[id^=MTG_CLASSNAME]');
-    this.status = resultsToArray(this.$, 'img[class^=SSSIMAGECENTER]');
-    this.room = resultsToArray(this.$, 'span[id^=MTG_ROOM]');
-    this.time = resultsToArray(this.$, 'span[id^=MTG_DAYTIME]');
-    this.instructors = resultsToArray(this.$, 'span[id^=MTG_INSTR]');
+    this.headings = resultsToArray(this.$, 'div[id^=win0divGPSSR_CLSRSLT_WRK_GROUPBOX2]', 'text');
+    this.classesPerHeadings = resultsToArray(this.$, 'table[id^=\'ACE_$ICField104\']', 'size');
+    this.nbr = resultsToArray(this.$, 'a[id^=MTG_CLASS_NBR]', 'text');
+    this.section = resultsToArray(this.$, 'a[id^=MTG_CLASSNAME]', 'html');
+    this.status = resultsToArray(this.$, 'img[class=SSSIMAGECENTER]', 'alt');
+    this.room = resultsToArray(this.$, 'span[id^=MTG_ROOM]', 'text');
+    this.time = resultsToArray(this.$, 'span[id^=MTG_DAYTIME]', 'text');
+    this.instructors = resultsToArray(this.$, 'span[id^=MTG_INSTR]', 'text');
+
+    // this result is not correct, fix this
+    console.log(this.section.toString());
+    process.exit(0);
 };
 
 ResultPageParser.prototype.incrementCounter = function() {
@@ -35,7 +39,8 @@ ResultPageParser.prototype.getNbr = function() {
 };
 
 ResultPageParser.prototype.getSection = function() {
-    return this.section[this.parseCounter];
+    // return this.section[this.parseCounter];
+    return 'hi'
 };
 
 ResultPageParser.prototype.getStatus = function() {
@@ -60,6 +65,28 @@ function resultsToArray(body, parseString) {
 
     results.each(function(i, elem) {
         resultsArray[i] = body(this);
+    });
+
+    return resultsArray;
+}
+
+function resultsToArray(body, parseString, attr) {
+    var results = body(parseString);
+    var resultsArray = [];
+
+    results.each(function(i, elem) {
+        if(attr === 'alt') {
+            resultsArray[i] = body(this).attr('alt');
+        } else if (attr === 'text') {
+            resultsArray[i] = body(this).text().trim();
+        } else if (attr === 'html') {
+            resultsArray[i] = body(this).html();
+        } else if (attr === 'size') {
+            resultsArray[i] = body(this).children().length;
+        }
+        else {
+            resultsArray[i] = body(this);
+        }
     });
 
     return resultsArray;
