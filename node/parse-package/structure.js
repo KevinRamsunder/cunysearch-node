@@ -9,7 +9,7 @@ Structure.prototype.createSectionHeader = function(chp) {
 };
 
 Structure.prototype.addClassToHeader = function(position, section) {
-    this.classHeadings[position].addClassToHeader(section);
+    this.classHeadings[position].addClassToHeading(section);
 };
 
 Structure.prototype.getSectionHeaderCount = function() {
