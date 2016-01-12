@@ -33,7 +33,7 @@ Parser.prototype.getParser = function(row, parser) {
 };
 
 Parser.prototype.getSection = function(ov, inv) {
-    if (inv.timeArray === undefined) {
+    if (inv.timeArray !== undefined) {
         return new MultiRowSection(ov, inv);
     } else {
         return new SingleRowSection(ov, inv);

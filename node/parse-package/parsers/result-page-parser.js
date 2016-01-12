@@ -12,10 +12,6 @@ var ResultPageParser = function(body) {
     this.room = resultsToArray(this.$, 'span[id^=MTG_ROOM]', 'text');
     this.time = resultsToArray(this.$, 'span[id^=MTG_DAYTIME]', 'text');
     this.instructors = resultsToArray(this.$, 'span[id^=MTG_INSTR]', 'text');
-
-    // this result is not correct, fix this
-    console.log(this.section.toString());
-    process.exit(0);
 };
 
 ResultPageParser.prototype.incrementCounter = function() {
@@ -39,8 +35,7 @@ ResultPageParser.prototype.getNbr = function() {
 };
 
 ResultPageParser.prototype.getSection = function() {
-    // return this.section[this.parseCounter];
-    return 'hi'
+    return this.section[this.parseCounter];
 };
 
 ResultPageParser.prototype.getStatus = function() {
@@ -80,7 +75,7 @@ function resultsToArray(body, parseString, attr) {
         } else if (attr === 'text') {
             resultsArray[i] = body(this).text().trim();
         } else if (attr === 'html') {
-            resultsArray[i] = body(this).html();
+            resultsArray[i] = body(this);
         } else if (attr === 'size') {
             resultsArray[i] = body(this).children().length;
         }
