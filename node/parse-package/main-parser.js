@@ -92,14 +92,3 @@ Parser.prototype.printClassStructure = function() {
 };
 
 module.exports = Parser;
-
-var fs = require('fs');
-fs.readFile('./output.txt', 'utf-8', function(err, data) {
-    if (err) {
-        console.log('error');
-        return;
-    } else {
-        var p = new Parser(data);
-        p.printClassStructure();
-    }
-});

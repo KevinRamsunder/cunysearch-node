@@ -4,6 +4,7 @@ var cheerio = require('cheerio');
 var FormData = require('form-data');
 var formTemplate = require('./form');
 var config = require('./config.js');
+var Parser = require('../parse-package/main-parser.js');
 
 var Bot = function() {};
 
@@ -32,7 +33,8 @@ Bot.prototype.submitSearch = function(inst, term, dept) {
 
         request.post(submit_options, function(err, res, body) {
             request.post(submit_options, function(err, res, body) {
-                console.log(body);
+                var parser = new Parser(body);
+                parser.printClassStructure();
             });
         });
     });
