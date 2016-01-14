@@ -34,7 +34,8 @@ Bot.prototype.submitSearch = function(inst, term, dept) {
         request.post(submit_options, function(err, res, body) {
             request.post(submit_options, function(err, res, body) {
                 var parser = new Parser(body);
-                parser.printClassStructure();
+                var results = parser.getJSON();
+                console.log(JSON.stringify(results, null, 2));
             });
         });
     });
