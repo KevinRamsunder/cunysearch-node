@@ -86,9 +86,39 @@ Parser.prototype.printClassStructure = function() {
                         section.time + '\n' + 
                         section.room + '\n' + 
                         section.instr + '\n' + 
-                        section.status + '\n');
+                        section.status + '\n' +
+                        section.htmlKey + '\n');
         }
     }
+};
+
+Parser.prototype.getJSON = function() {
+    var jsonObject = {'results': []};
+
+    for (var i = 0; i < parseInt(this.classStructure.classHeadings.length); i++) {
+        var subJsonArray = {};
+        subJsonArray['title'] = this.classStructure.getClassHeader(i).title;
+        subJsonArray['quantity'] = parseInt(this.classStructure.getClassHeader(i).quantity);
+        subJsonArray['sections'] = [];
+
+        for (var j = 0; j < subJsonArray['quantity']; j++) {
+            var sectionJson = {};
+
+            var section = this.classStructure.getClassSection(i, j);
+            sectionJson['nbr'] = section.nbr;
+            sectionJson['time'] = section.time;
+            sectionJson['room'] = section.room;
+            sectionJson['instr'] = section.instr;
+            sectionJson['status'] = section.status;
+            sectionJson['htmlKey'] = section.htmlKey;
+
+            subJsonArray['sections'].push(sectionJson);
+        }
+
+        jsonObject['results'].push(subJsonArray);
+    }
+
+    return jsonObject;
 };
 
 module.exports = Parser;
