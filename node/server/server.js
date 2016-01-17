@@ -1,13 +1,11 @@
-var express = require('express');
+// Queue --------------------------------------
+var queue = require('./async');
 
-var app = express();
+function search(values) {
+    queue.push({inst: values.inst, term: values.term, dept: values.dept}, function(val) {
+        console.log(val);
+        // res.send(val);
+    });
+}
 
-app.use(express.static('../../public'));
-
-app.listen(8000);
-
-console.log("Running on 8000");
-
-// var queue = require('./async');
-
-// queue.push({inst: 'QNS01', term: '1162', dept: 'CSCI'});
+search({inst: 'QNS01', term: '1162', dept: 'CSCI'});
