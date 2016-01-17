@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cunyapp">
+    <head>
+        <meta charset="UTF-8">
+        <title>Course Search</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        
+        <!-- Angular Ng-Table -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.css">
+    </head>
+
+    <body>        
+        <header>
+            <nav id="navbar" class="navbar">
+                <div class ="text-center">
+                    <a class="text-center">Title</a>
+                </div>
+            </nav>
+        </header>
+
+        <div id="body-content">
+            <div class="container">
+                <!-- Header -->
+                <div class="jumbotron text-center">
+                    <h3>Working!</h3>
+                </div>    
+                <!-- Injectable -->
+                <div ng-view></div>
+            </div>        
+        </div>
+        
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        
+        <!-- Bootstrap -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+        
+        <!-- Angular Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>
+        
+        <!-- Angular Controllers -->
+        <script src="app/app.js"></script>
+        <script src="app/controllers/MainController.js"></script>
+        <script src="app/controllers/TableController.js"></script>
+    </body>
+</html>
