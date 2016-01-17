@@ -1,0 +1,13 @@
+<div class="table">
+    <table ng-table="table.tableParams" class="table table-condensed table-bordered table-striped">
+        <tr ng-repeat="user in table.data">
+            <td title="'Title'"> {{ user.title }} </td>
+            <td title="'Class ID'"> {{ user.nbr }} </td>
+            <td title="'Time'"> {{ user.time }} </td>
+            <td title="'Room'"> {{ user.room }} </td>
+            <td title="'Instructor'"> {{ user.instr }} </td>
+            <td title="'Status'"> {{ user.status }} </td>
+            <td title="'HtmlKey'"> {{ user.htmlKey }} </td>
+        </tr>
+    </table>
+</div>
