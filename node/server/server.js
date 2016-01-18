@@ -1,11 +1,15 @@
-// Queue --------------------------------------
-var queue = require('./async');
+var express = require('express');
+var bodyParser = require('body-parser');
 
-function search(values) {
-    queue.push({inst: values.inst, term: values.term, dept: values.dept}, function(val) {
-        console.log(val);
-        // res.send(val);
-    });
-}
+// initialize express app
+var app = express();
 
-search({inst: 'QNS01', term: '1162', dept: 'CSCI'});
+// connect public directory to node app
+app.use(express.static('../../public'));
+
+// listen for http requests on port
+app.listen(8000);
+console.log("Running on 8000");
+
+var main_routes = require('../routes/main_routes');
+app.use('/', main_routes);
