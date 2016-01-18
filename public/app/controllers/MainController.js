@@ -1,4 +1,3 @@
-
 cunyapp.controller('MainController', mainController);
 
 cunyapp.factory('HttpPromise', function($http) {
@@ -6,7 +5,7 @@ cunyapp.factory('HttpPromise', function($http) {
     return {
         getData: function getData() {
             return $http.get('/search-request').then(function(response) {
-                // parse and reutnr  serialized string to json object
+                // parse and return serialized string to json object
                 return JSON.parse(response.data);
             });
         }
