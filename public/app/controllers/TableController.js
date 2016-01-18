@@ -1,7 +1,5 @@
 cunyapp.controller('TableController', tableController);
 
-console.log('debug 2');
-
 // inject dependencies
 tableController.$inject = ['$scope', '$http', 'ngTableParams'];
 
