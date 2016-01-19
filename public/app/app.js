@@ -13,3 +13,19 @@ cunyapp.config(function($routeProvider) {
             controller: "TableController as table"
         })
 });
+
+// service to provide communication between table and main controller
+cunyapp.service('JsonToTable', function(NgTableParams, $location) {
+    var self = this;
+
+    // default value
+    self.jsonData = {default: ""};
+
+    self.loadDataInTable = function(jsonData) {
+        // read results array from json object
+        self.jsonData = jsonData.results; 
+
+        // change route to /table controller
+        $location.path('/table');
+    }
+});
