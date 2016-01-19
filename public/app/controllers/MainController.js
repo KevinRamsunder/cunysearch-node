@@ -1,5 +1,8 @@
 cunyapp.controller('MainController', mainController);
 
+// inject dependencies
+mainController.$inject = ['$scope', '$http', 'HttpPromise', 'JsonToTable', '$location'];
+
 cunyapp.factory('HttpPromise', function($http) {
     // function to start http request
     return {
@@ -12,18 +15,14 @@ cunyapp.factory('HttpPromise', function($http) {
     };
 });
 
-// inject dependencies
-mainController.$inject = ['$scope', '$http', 'HttpPromise'];
-
-function mainController($scope, $http, HttpPromise) {
+function mainController($scope, $http, HttpPromise, JsonToTable) {
     var self = this;
     
     // construct promise
     var promise = HttpPromise.getData();
 
-    // wait for callback, once http call is complete
+    // wait for callback - when http call is complete
     promise.then(function(data) {
-        self.data = data;
-        console.log(self.data);
+        JsonToTable.loadDataInTable(data);
     });
 }

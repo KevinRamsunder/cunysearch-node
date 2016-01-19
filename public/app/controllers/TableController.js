@@ -1,17 +1,14 @@
 cunyapp.controller('TableController', tableController);
 
 // inject dependencies
-tableController.$inject = ['$scope', '$http', 'ngTableParams'];
+tableController.$inject = ['$scope', '$http', 'ngTableParams', 'JsonToTable'];
 
-function tableController($scope, $http, NgTableParams) {
+function tableController($scope, $http, NgTableParams, JsonToTable) {
     var self = this;
-    
-    // read in json object from route
-    $http.get('script.json').success(function(data) {
-        // read results array from json object
-        self.data = data.results;
 
-        // construct table object from self.data
-        self.tableParams = new NgTableParams({}, {dataset: self.data});
-    });
+    // bind json data to this controller
+    self.data = JsonToTable.jsonData;
+
+    // construct table object from self.data
+    self.tableParams = new NgTableParams({}, {dataset: self.data});
 }
