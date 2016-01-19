@@ -1,4 +1,4 @@
-var cunyapp = angular.module('cunyapp', ['ngRoute', 'ngTable']);
+var cunyapp = angular.module('cunyapp', ['ngRoute', 'ngTable', 'ui.bootstrap']);
 
 cunyapp.config(function($routeProvider) {
     $routeProvider
