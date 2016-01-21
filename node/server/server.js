@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var colors = require('colors');
 
 // require session store
 var redis = require('redis');
@@ -21,22 +22,17 @@ client.on('error', function(err) {
 // initialize session management
 app.use(session({
     secret: config.server.session_secret,
-    saveUnitialized: true,
+    saveUninitialized: true,
     resave: true,
-    store: new RedisStore({host: 'localhost', port: '8000'})
+    store: new RedisStore({host: 'localhost', port: '6379'})
 }));
-
-app.use(function printSession(req, res, next) {
-    console.log('Express Session: ' + req.session);
-    return next();
-});
 
 // connect public directory to node app
 app.use(express.static('../../public'));
 
 // listen for http requests on port
 app.listen(8000);
-console.log("Running on 8000");
+console.log("Running on 8000".white);
 
 var main_routes = require('../routes/main_routes');
-app.use('/', main_routes);
+app.use('/api', main_routes);
