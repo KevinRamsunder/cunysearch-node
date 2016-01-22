@@ -61,6 +61,60 @@ function getTemplate(key, inst, term, dept) {
     return fields;
 }
 
+function termTemplate(key, htmlKey) {
+    var fields = {
+        ICAJAX: '1',
+        ICType: 'Panel',
+        ICElementNum: '0',
+        ICStateNum: '1',
+        ICAction: 'CLASS_SRCH_WRK2_INSTITUTION',
+        ICXPos: '0',
+        ICYPos: '0',
+        ICFocus: '',
+        ICSaveWarningFilter: '0',
+        ICChanged: '-1',
+        ICResubmit: '0',
+        ICSID: key,
+        ICModalWidget: '0',
+        ICZoomGrid: '0',
+        ICZoomGridRt: '0',
+        ICModalLongClosed: '',
+        ICActionPrompt: 'false',
+        ICFind: '',
+        ICAddCount: '',
+        CLASS_SRCH_WRK2_INSTITUTION$42$: htmlKey
+    }
+
+    return fields;
+}
+
+function enrollmentTemplate(key, htmlKey) {
+    var fields = {
+        ICType: 'Panel',
+        ICElementNum: '0',
+        ICStateNum: '3',
+        ICAction: htmlKey,
+        ICXPos: '0',
+        ICYPos: '0',
+        ICFocus: '',
+        ICSaveWarningFilter: '0',
+        ICChanged: '-1',
+        ICResubmit: '0',
+        ICSID: key,
+        ICModalWidget: '0',
+        ICZoomGrid: '0',
+        ICZoomGridRt: '0',
+        ICModalLongClosed: '', 
+        ICActionPrompt: 'false',
+        ICFind: '',
+        ICAddCount: '' 
+    };
+    
+    return fields;
+}
+
 module.exports = {
-    getTemplate: getTemplate
+    getTemplate: getTemplate,
+    termTemplate: termTemplate,
+    enrollmentTemplate: enrollmentTemplate
 };
