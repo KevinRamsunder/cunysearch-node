@@ -6,29 +6,29 @@ var formTemplate = require('./form');
 var config = require('./config.js');
 var Parser = require('../parse-package/main-parser.js');
 
-var Bot = function() {};
-
-Bot.prototype.submitSearch = function(inst, term, dept, callback) {
-    var options = {
+var Bot = function() {
+    this.options = {
         url: config.cuny.longUrl,
         headers: config.cuny.headers,
         jar: request.jar()
     };
+};
 
-    request.post(options, function(err, res, body) {
+Bot.prototype.submitSearch = function(inst, term, dept, callback) {
+    request.post(this.options, function(err, res, body) {
         if(err) {
             console.error(err);
             return;
         } 
         
         var parsed = cheerio.load(body);
-        var key = parsed(config.html.key).val();
+        this.key = parsed(config.html.key).val();
 
         var submit_options = {
             url: config.cuny.shortUrl,
-            form: qs.stringify(formTemplate.getTemplate(key, inst, term, dept)),
-            headers: options.headers,
-            jar: options.jar
+            form: qs.stringify(formTemplate.getTemplate(this.key, inst, term, dept)),
+            headers: this.options.headers,
+            jar: this.options.jar
         };
 
         request.post(submit_options, function(err, res, body) {
@@ -42,7 +42,4 @@ Bot.prototype.submitSearch = function(inst, term, dept, callback) {
     });
 };
 
-    
 module.exports = Bot;
-    
-
