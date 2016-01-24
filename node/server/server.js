@@ -14,11 +14,6 @@ var config = require('./config.js');
 // initialize express app
 var app = express();
 
-// redis client error handler
-client.on('error', function(err) {
-    console.log('Redis Error: ' + err)
-});
-
 // initialize session management
 app.use(session({
     secret: config.server.session_secret,
@@ -26,6 +21,11 @@ app.use(session({
     resave: true,
     store: new RedisStore({host: 'localhost', port: '6379'})
 }));
+
+// redis client error handler
+client.on('error', function(err) {
+    console.log('Redis Error: ' + err);
+});
 
 // connect public directory to node app
 app.use(express.static('../../public'));

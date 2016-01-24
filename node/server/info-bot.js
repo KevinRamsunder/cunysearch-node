@@ -124,16 +124,4 @@ InfoBot.prototype.getDepts = function(parsed) {
     return parsedResults;
 };
 
-var bot = new InfoBot(function() {
-    // load institutions from cuny
-    bot.getInstitutions(function(institutions) {
-        for(var i = 0; i < institutions.length; i++) {
-            // load modified page based on selected institution
-            bot.parseXML(institutions[i], function(inst, parserObject) {
-                // extract terms and depts of each institution
-                console.log(inst.school);
-                console.log(bot.getDepts(parserObject));
-            });
-        }
-    });
-});
+module.exports = InfoBot;
