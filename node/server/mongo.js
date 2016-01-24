@@ -2,20 +2,24 @@ var mongoose = require('mongoose');
 var config = require('./config.js');
 var InfoBot = require('./info-bot.js');
 
+// connect to database
 mongoose.connect('mongodb://localhost/' + config.mongo.db);
 
+// database schema
 var School = mongoose.model("School", {
     institution: {Name: String, HtmlKey: String},
     term: [{Name: String, HtmlKey: String}],
     department: [{Name: String, HtmlKey: String}]
 });
 
-var bot = new InfoBot(function() {
+function loadAndStoreServerData() {
     // load institutions from cuny
-    bot.getInstitutions(function(institutions) {
-        commitInstitutionToDatabase(institutions);
+    var bot = new InfoBot(function() {
+        bot.getInstitutions(function(institutions) {
+            commitInstitutionToDatabase(institutions);
+        });
     });
-});
+}
 
 function commitInstitutionToDatabase(institutions) {
     // load modified page based on selected institution
@@ -62,3 +66,7 @@ function commitObject(object) {
         }
     });
 }
+
+module.exports = {
+    loadAndStoreServerData: loadAndStoreServerData
+};
