@@ -1,16 +1,18 @@
 var cunyapp = angular.module('cunyapp', ['ngRoute', 'ngTable', 'ui.bootstrap']);
 
+// route provider
 cunyapp.config(function($routeProvider) {
     $routeProvider
         // main landing page
         .when('/', {
             templateUrl: 'app/views/main.html',
-            controller: "MainController as main"
+            controller: 'MainController as main'
         })
 
+        // search result pages
         .when('/table', {
             templateUrl: 'app/views/table.html',
-            controller: "TableController as table"
+            controller: 'TableController as table'
         })
 });
 

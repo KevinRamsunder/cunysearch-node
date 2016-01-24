@@ -9,6 +9,7 @@ var main_routes = express.Router();
 // include middleware for parsing json
 main_routes.use(bodyParser.json());
 
+// get search results from cuny and return to front-end
 main_routes.get('/search-request', function(req, res) {
     if(req.session.init === undefined) {
         req.session.init = req.session.id;

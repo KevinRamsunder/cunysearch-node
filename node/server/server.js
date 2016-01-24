@@ -14,11 +14,6 @@ var config = require('./config.js');
 // initialize express app
 var app = express();
 
-// redis client error handler
-client.on('error', function(err) {
-    console.log('Redis Error: ' + err)
-});
-
 // initialize session management
 app.use(session({
     secret: config.server.session_secret,
@@ -26,6 +21,11 @@ app.use(session({
     resave: true,
     store: new RedisStore({host: 'localhost', port: '6379'})
 }));
+
+// redis client error handler
+client.on('error', function(err) {
+    console.log('Redis Error: ' + err);
+});
 
 // connect public directory to node app
 app.use(express.static('../../public'));
@@ -36,3 +36,6 @@ console.log("Running on 8000".white);
 
 var main_routes = require('../routes/main_routes');
 app.use('/api', main_routes);
+
+var info_routes = require('../routes/info_routes');
+app.use('/info', info_routes);
