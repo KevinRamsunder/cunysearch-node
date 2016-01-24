@@ -17,7 +17,17 @@ cunyapp.factory('HttpPromise', function($http) {
 
 function mainController($scope, $http, HttpPromise, JsonToTable) {
     var self = this;
-    
+    self.institutions = [];
+
+    $http.get('info/inst').then(function(response) {
+        var institutions = response.data[0]; // list of insts
+        var instList = response.data[1]; // mongo doc object
+        
+        for(var i = 0; i < institutions.length; i++) {
+            self.institutions.push(institutions[i].inst);
+        }
+    });
+
     self.postResults = function() {
         // construct promise
         var promise = HttpPromise.getData();
@@ -26,5 +36,5 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
         promise.then(function(data) {
             JsonToTable.loadDataInTable(data);
         });
-    }
+    };
 }

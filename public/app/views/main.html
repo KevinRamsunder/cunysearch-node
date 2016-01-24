@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <h4>Institution</h4>
-        <input type="text" ng-model="main.selected" placeholder="Enter institution here" uib-typeahead="inst for inst in main.list" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
+        <input type="text" ng-model="main.selected" placeholder="Enter institution here" uib-typeahead="inst for inst in main.institutions | filter:$viewValue" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
         <br>
         <button ng-click="main.postResults()" type="button" class="btn btn-primary btn-lg btn-block">Submit Class Call</button
     </div>
