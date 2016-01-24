@@ -1,8 +1,14 @@
-<div class="container">
-    <div class="row">
-        <h4>Institution</h4>
-        <input type="text" ng-model="main.selected" placeholder="Enter institution here" uib-typeahead="inst for inst in main.institutions | filter:$viewValue" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
+<div>
+    <div>
+        <!-- <h4>Institution</h4> -->
+        <input type="text" ng-model="main.instSelected" typeahead-on-select="main.processInstitutionChange()" placeholder="Enter institution here" uib-typeahead="inst for inst in main.institutions | filter:$viewValue" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
         <br>
-        <button ng-click="main.postResults()" type="button" class="btn btn-primary btn-lg btn-block">Submit Class Call</button
+        <!-- <h4>Term</h4> -->
+        <input type="text" ng-model="main.termSelected" typeahead-on-select="main.processTermChange()" placeholder="Enter term here" uib-typeahead="term for term in main.terms | filter:$viewValue" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
+        <br>
+        <!-- <h4>Department</h4> -->
+        <input type="text" ng-model="main.deptSelected" typeahead-on-select="main.processDeptChange()" placeholder="Enter department here" uib-typeahead="dept for dept in main.depts | filter:$viewValue | limitTo: 10" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
+        <br>
+        <button ng-click="main.postResults()" type="button" class="btn btn-primary btn-lg btn-block">Submit Class Call</button>
     </div>
 </div>
