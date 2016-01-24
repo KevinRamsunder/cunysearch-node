@@ -36,3 +36,6 @@ console.log("Running on 8000".white);
 
 var main_routes = require('../routes/main_routes');
 app.use('/api', main_routes);
+
+var info_routes = require('../routes/info_routes');
+app.use('/info', info_routes);
