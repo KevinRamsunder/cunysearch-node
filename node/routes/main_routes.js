@@ -10,7 +10,7 @@ var main_routes = express.Router();
 main_routes.use(bodyParser.json());
 
 // get search results from cuny and return to front-end
-main_routes.get('/search-request', function(req, res) {
+main_routes.post('/search-request', function(req, res) {
     if(req.session.init === undefined) {
         req.session.init = req.session.id;
         console.log(('Session created @ ' + req.session.id).yellow);
@@ -19,7 +19,14 @@ main_routes.get('/search-request', function(req, res) {
     }
 
     console.log("Received request at /search-request");
-    search({inst: 'QNS01', term: '1162', dept: 'CSCI'}, res);
+
+    var data = {
+        inst: req.body.data.inst.htmlKey,
+        term: req.body.data.term.htmlKey,
+        dept: req.body.data.dept.htmlKey
+    };
+
+    search(data, res);
 });
 
 function search(values, res) {

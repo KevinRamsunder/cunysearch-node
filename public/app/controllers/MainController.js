@@ -6,8 +6,8 @@ mainController.$inject = ['$scope', '$http', 'HttpPromise', 'JsonToTable', '$loc
 // function to start http request
 cunyapp.factory('HttpPromise', function($http) {
     return {
-        getData: function getData() {
-            return $http.get('api/search-request').then(function(response) {
+        getData: function getData(data) {
+            return $http.post('api/search-request', {data: data}).then(function(response) {
                 // parse and return serialized string to json object
                 return JSON.parse(response.data);
             });
@@ -44,7 +44,7 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
 
     // process on change event for institution select bar
     self.processInstitutionChange = function() {
-        var selectedIndex = self.institutions.indexOf(self.instSelected);
+        var selectedIndex = self.institutions.indexOf(self.instSelected.inst);
         var indexToInstList = self.instKeys[selectedIndex];
 
         self.updateTerms(indexToInstList);
@@ -57,7 +57,7 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
         termList = self.instList[indexToInstList].term;
 
         for(var i = 0; i < termList.length; i++) {
-            self.terms.push(termList[i].Name);
+            self.terms.push({term: termList[i].Name, htmlKey: termList[i].HtmlKey});
         }
     }
 
@@ -67,14 +67,21 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
         deptList = self.instList[indexToInstList].department;
 
         for(var i = 0; i < deptList.length; i++) {
-            self.depts.push(deptList[i].Name);
+            self.depts.push({dept: deptList[i].Name, htmlKey: deptList[i].HtmlKey});
         }
     }
 
     // post search request to server
     self.postResults = function() {
+        // construct data from currently selected options
+        var data = {
+            inst: self.instSelected,
+            term: self.termSelected,
+            dept: self.deptSelected
+        }
+
         // construct promise
-        var promise = HttpPromise.getData();
+        var promise = HttpPromise.getData(data);
 
         // wait for callback - when http call is complete
         promise.then(function(data) {
