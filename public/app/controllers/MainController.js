@@ -3,18 +3,6 @@ cunyapp.controller('MainController', mainController);
 // inject dependencies
 mainController.$inject = ['$scope', '$http', 'HttpPromise', 'JsonToTable', '$location'];
 
-// function to start http request
-cunyapp.factory('HttpPromise', function($http) {
-    return {
-        getData: function getData(data) {
-            return $http.post('api/search-request', {data: data}).then(function(response) {
-                // parse and return serialized string to json object
-                return JSON.parse(response.data);
-            });
-        }
-    };
-});
-
 function mainController($scope, $http, HttpPromise, JsonToTable) {
     var self = this;
 
@@ -81,7 +69,7 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
         }
 
         // construct promise
-        var promise = HttpPromise.getData(data);
+        var promise = HttpPromise.getClasses(data);
 
         // wait for callback - when http call is complete
         promise.then(function(data) {
