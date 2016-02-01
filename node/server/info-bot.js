@@ -23,7 +23,7 @@ var InfoBot = function(callback) {
         
         var parsed = cheerio.load(body);
         self.key = parsed(config.html.key).val();
-        callback();
+        callback(self);
     });
 };
 

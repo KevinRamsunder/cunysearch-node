@@ -25,8 +25,20 @@ function getDatabaseModel(callback) {
             console.log(err);
             callback(err);
         } else {
-            institutions = processModel(instList);
-            callback([institutions, instList]);
+            if(instList.length === 0) {
+                mongo.populateDatabase(function(err) {
+                    if(err) {
+                        console.log('Unable to populate database');
+                        return;
+                    } else {
+                        institutions = processModel(instList);
+                        callback([institutions, instList]);
+                    }
+                });
+            } else {
+                institutions = processModel(instList);
+                callback([institutions, instList]);
+            }
         }
     });
 }
