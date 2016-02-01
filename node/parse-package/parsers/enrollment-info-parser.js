@@ -7,9 +7,9 @@ var EnrollmentInfoParser = function(htmlPage) {
     tot = resultsToArray(this.$, '[id=SSR_CLS_DTL_WRK_ENRL_TOT]');
     avail = resultsToArray(this.$, '[id=SSR_CLS_DTL_WRK_AVAILABLE_SEATS]');
 
-    this.classCapacity = parseInt(cap.text(), 10);
-    this.classTotal = parseInt(tot.text(), 10);
-    this.classAvailable = parseInt(avail.text(), 10);
+    this.classCapacity = parseInt(cap[0], 10);
+    this.classTotal = parseInt(tot[0], 10);
+    this.classAvailable = parseInt(avail[0], 10);
 };
 
 function resultsToArray(body, parseString) {

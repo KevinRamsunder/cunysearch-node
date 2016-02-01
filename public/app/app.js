@@ -16,6 +16,25 @@ cunyapp.config(function($routeProvider) {
         })
 });
 
+// function to start http request
+cunyapp.factory('HttpPromise', function($http) {
+    return {
+        getClasses: function getClasses(data) {
+            return $http.post('api/search-request', {data: data}).then(function(response) {
+                // parse and return serialized string to json object
+                return JSON.parse(response.data);
+            });
+        },
+
+        getSeats: function getSeats(data) {
+            return $http.post('api/enrollment-request', {data: data}).then(function(response) {
+                // parse and return serialized string to json object
+                return JSON.parse(response.data);
+            });  
+        }
+    };
+});
+
 // service to provide communication between table and main controller
 cunyapp.service('JsonToTable', function(NgTableParams, $location) {
     var self = this;
@@ -30,4 +49,13 @@ cunyapp.service('JsonToTable', function(NgTableParams, $location) {
         // change route to /table controller
         $location.path('/table');
     }
+});
+
+// service to provide communication between table and main controller
+cunyapp.service('JsonToModal', function() {
+    var self = this;
+
+    self.loadDataInModal = function(jsonData) {
+        console.log(jsonData);
+    };
 });
