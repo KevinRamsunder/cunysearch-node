@@ -1,14 +1,20 @@
 <div>
+    <!-- Select options -->
     <div>
         <!-- <h4>Institution</h4> -->
+    
         <input type="text" ng-model="main.instSelected" typeahead-on-select="main.processInstitutionChange()" placeholder="Enter institution here" uib-typeahead="inst as inst.inst for inst in main.institutionList | filter:$viewValue" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
+    
         <br>
+    
         <!-- <h4>Term</h4> -->
         <input type="text" ng-model="main.termSelected" placeholder="Enter term here" uib-typeahead="term as term.term for term in main.terms | filter:$viewValue" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
         <br>
+    
         <!-- <h4>Department</h4> -->
         <input type="text" ng-model="main.deptSelected" placeholder="Enter department here" uib-typeahead="dept as dept.dept for dept in main.depts | filter:$viewValue" class="form-control" typeahead-show-hints="true" typeahead-min-length="0">
         <br>
-        <button ng-click="main.postResults()" type="button" class="btn btn-primary btn-lg btn-block">Submit Class Call</button>
+        
+        <button ng-click="main.postResults()" type="button" class="btn btn-primary btn-lg btn-block">{{main.loader.text}}<i ng-show="main.loader.status" class="fa fa-spinner fa-spin"></i></button>
     </div>
 </div>

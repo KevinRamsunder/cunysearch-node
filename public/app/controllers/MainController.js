@@ -30,6 +30,9 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
         }
     });
 
+    // initialize loading icon status to false
+    self.loader = {text: 'Submit Class Search', status: false};
+
     // process on change event for institution select bar
     self.processInstitutionChange = function() {
         var selectedIndex = self.institutions.indexOf(self.instSelected.inst);
@@ -61,6 +64,9 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
 
     // post search request to server
     self.postResults = function() {
+        self.loader.status = true;
+        self.loader.text = 'Getting results from Cuny First...     ';
+
         // construct data from currently selected options
         var data = {
             inst: self.instSelected,
@@ -74,6 +80,8 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
         // wait for callback - when http call is complete
         promise.then(function(data) {
             JsonToTable.loadDataInTable(data);
+            self.loader.status = false;
+            self.loader.text = 'Submit Class Search';
         });
     };
 }
