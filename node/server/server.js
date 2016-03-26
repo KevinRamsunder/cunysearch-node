@@ -13,13 +13,24 @@ var config = require('./config.js');
 
 // initialize express app
 var app = express();
+var store = undefined;
+
+if (process.env.REDISTOGO_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+    var redis = require("redis").createClient(rtg.port, rtg.hostname);
+    redis.auth(rtg.auth.split(":")[1]);
+    store = new RedisStore({host: rtg.hostname, port: rtg.port});
+} else {
+    var redis = require("redis").createClient();
+    store = new RedisStore({host: 'localhost', port: '6379'});
+}
 
 // initialize session management
 app.use(session({
     secret: config.server.session_secret,
     saveUninitialized: true,
     resave: true,
-    store: new RedisStore({host: 'localhost', port: '6379'})
+    store: store
 }));
 
 // redis client error handler
