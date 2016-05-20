@@ -4,8 +4,8 @@ var ResultPageParser = function(body) {
     this.$ = cheerio.load(body);
 
     this.parseCounter = 0;
-    this.headings = resultsToArray(this.$, 'div[id^=win0divGPSSR_CLSRSLT_WRK_GROUPBOX2]', 'text');
-    this.classesPerHeadings = resultsToArray(this.$, 'table[id^=\'ACE_$ICField104\']', 'size');
+    this.headings = resultsToArray(this.$, 'div[id^=win0divSSR_CLSRSLT_WRK_GROUPBOX2GP]', 'text');
+    this.classesPerHeadings = resultsToArray(this.$, 'table[id^=\'ACE_$ICField48\']', 'size');
     this.nbr = resultsToArray(this.$, 'a[id^=MTG_CLASS_NBR]', 'text');
     this.section = resultsToArray(this.$, 'a[id^=MTG_CLASSNAME]', 'html');
     this.status = resultsToArray(this.$, 'img[class=SSSIMAGECENTER]', 'alt');
