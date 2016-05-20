@@ -20,8 +20,8 @@ function getTemplate(key, inst, term, dept) {
         ICActionPrompt : 'false',
         ICFind : '',
         ICAddCount : '',
-        CLASS_SRCH_WRK2_INSTITUTION$42$ : inst,
-        CLASS_SRCH_WRK2_STRM$45$ : term,
+        CLASS_SRCH_WRK2_INSTITUTION$31$ : inst,
+        CLASS_SRCH_WRK2_STRM$35$ : term,
         SSR_CLSRCH_WRK_SUBJECT_SRCH$0 : dept,
         SSR_CLSRCH_WRK_SSR_EXACT_MATCH1$1 : 'G',
         SSR_CLSRCH_WRK_CATALOG_NBR$1 : '0',
@@ -81,8 +81,8 @@ function fullSeatTemplate(key, inst, term, dept, nbr) {
         ICActionPrompt : 'false',
         ICFind : '',
         ICAddCount : '',
-        CLASS_SRCH_WRK2_INSTITUTION$42$ : inst,
-        CLASS_SRCH_WRK2_STRM$45$ : term,
+        CLASS_SRCH_WRK2_INSTITUTION$31$ : inst,
+        CLASS_SRCH_WRK2_STRM$35$ : term,
         SSR_CLSRCH_WRK_SUBJECT_SRCH$0 : dept,
         SSR_CLSRCH_WRK_SSR_EXACT_MATCH1$1 : 'G',
         SSR_CLSRCH_WRK_CATALOG_NBR$1 : '0',
@@ -143,7 +143,7 @@ function termTemplate(key, htmlKey) {
         ICActionPrompt: 'false',
         ICFind: '',
         ICAddCount: '',
-        CLASS_SRCH_WRK2_INSTITUTION$42$: htmlKey
+        CLASS_SRCH_WRK2_INSTITUTION$31$: htmlKey
     }
 
     return fields;
