@@ -125,24 +125,27 @@ function fullSeatTemplate(key, inst, term, dept, nbr) {
 function termTemplate(key, htmlKey) {
     var fields = {
         ICAJAX: '1',
+        ICNAVTYPEDROPDOWN: '0',
         ICType: 'Panel',
         ICElementNum: '0',
         ICStateNum: '1',
         ICAction: 'CLASS_SRCH_WRK2_INSTITUTION',
         ICXPos: '0',
         ICYPos: '0',
+        ResponsetoDiffFrame: '-1',
+        TargetFrameName: 'None',
+        FacetPath: 'None',
         ICFocus: '',
         ICSaveWarningFilter: '0',
         ICChanged: '-1',
+        ICAutoSave: '0',
         ICResubmit: '0',
         ICSID: key,
-        ICModalWidget: '0',
-        ICZoomGrid: '0',
-        ICZoomGridRt: '0',
-        ICModalLongClosed: '',
         ICActionPrompt: 'false',
+        ICBcDomData: 'undefined',
         ICFind: '',
         ICAddCount: '',
+        ICAPPCLSDATA: '',
         CLASS_SRCH_WRK2_INSTITUTION$31$: htmlKey
     }
 
