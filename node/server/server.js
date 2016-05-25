@@ -27,7 +27,7 @@ app.use('/api', main_routes);
 var info_routes = require('../routes/info_routes');
 app.use('/info', info_routes);
 
-load information from CUNYFirst server
+// load information from CUNYFirst server
 mongo.populateDatabase(function(err) {
     if(err) {
         console.log('Cron Job unable to run.');
