@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var config = require('./config.js');
 var InfoBot = require('./info-bot.js');
 var CronJob = require('cron').CronJob;
+var async = require('async');
 
 // connect to database
 mongoose.connect('mongodb://localhost/' + config.mongo.db);
@@ -23,28 +24,37 @@ var School = mongoose.model("School", {
     department: [{Name: String, HtmlKey: String}]
 });
 
-function loadAndStoreServerData() {
+function loadAndStoreServerData(originalCallback) {
     // load institutions from cuny
     var bot = new InfoBot(function(thisRef) {
         thisRef.getInstitutions(function(institutions) {
-            commitInstitutionToDatabase(institutions, thisRef);
+            commitInstitutionToDatabase(institutions, thisRef, originalCallback);
         });
     });
 }
 
-function commitInstitutionToDatabase(institutions, thisRef) {
+function commitInstitutionToDatabase(institutions, thisRef, originalCallback) {
     if(institutions.length === 0) {
         console.log('Error retrieving institution data from the server.');
         return;
     }
 
     // load modified page based on selected institution
-    for(var i = 0; i < institutions.length; i++) {
-        extractInformation(institutions[i], thisRef);
-    }
+    var i = 0;
+
+    async.whilst(
+        function() { return i < institutions.length; },
+        function(newCallback) {
+            extractInformation(institutions[i], thisRef, newCallback);
+            i++;
+        },
+        function() {
+            originalCallback();
+        }
+    );
 }
 
-function extractInformation(singleInstitution, thisRef) {
+function extractInformation(singleInstitution, thisRef, newCallback) {
     // extract terms and depts of each institution
     thisRef.parseXML(singleInstitution, function(inst, parserObject) {
         var term = thisRef.getTerms(parserObject);
@@ -67,7 +77,7 @@ function extractInformation(singleInstitution, thisRef) {
             return;
         }
 
-        commitObject(object);
+        commitObject(object, newCallback);
     });
 }
 
@@ -88,7 +98,7 @@ function generateObject(inst, term, dept) {
     return school;
 }
 
-function commitObject(object) {
+function commitObject(object, newCallback) {
     // commit object to database
     object.save(function(err) {
         if(err) {
@@ -96,6 +106,8 @@ function commitObject(object) {
         } else {
             console.log(object.institution.Name + " added to db.");
         }
+
+        newCallback();
     });
 }
 
@@ -106,8 +118,7 @@ function populateDatabase(callback) {
             console.log("Unable to drop collection: School");
             callback("error");
         } else {
-            loadAndStoreServerData();
-            callback();
+            loadAndStoreServerData(callback);
         }
     });
 }
