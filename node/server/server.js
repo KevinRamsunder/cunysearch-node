@@ -28,17 +28,19 @@ var info_routes = require('../routes/info_routes');
 app.use('/info', info_routes);
 
 // load information from CUNYFirst server
+console.log("Populating Database... please wait.");
+
 mongo.populateDatabase(function(err) {
     if(err) {
-        console.log('Cron Job unable to run.');
+        console.log('Database unable to populate, CUNYFirst may be down. Program will terminate.');
     } else {
-        console.log('Cron Job ran successfully.');
+        console.log('Database populated successfully.\n');
+        
+        // listen for http requests on port AFTER database is finished loading
+        app.listen(8000);
+        console.log("Running on 8000".white);
     }
 });
 
 // connect public directory to node app
 app.use(express.static('../../public'));
-
-// listen for http requests on port
-app.listen(8000);
-console.log("Running on 8000".white);
