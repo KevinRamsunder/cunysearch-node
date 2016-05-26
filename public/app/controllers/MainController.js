@@ -65,7 +65,7 @@ function mainController($scope, $http, HttpPromise, JsonToTable) {
     // post search request to server
     self.postResults = function() {
         self.loader.status = true;
-        self.loader.text = 'Getting results from Cuny First...     ';
+        self.loader.text = 'Getting results from CUNYFirst...     ';
 
         // construct data from currently selected options
         var data = {
