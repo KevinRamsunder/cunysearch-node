@@ -16,12 +16,16 @@ const server = new http.Server(app);
 const io = new SocketIo(server);
 io.path('/ws');
 
+var FileStore = require('session-file-store')(session);
+
 app.use(session({
-  secret: 'react and redux rule!!!!',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 60000 }
+    name: 'server-session-cookie-id',
+    secret: Math.random().toString(36).substring(7),
+    store: new FileStore(),
+    saveUninitialized: true,
+    resave: true
 }));
+
 app.use(bodyParser.json());
 
 
@@ -50,7 +54,6 @@ app.use((req, res) => {
     res.status(404).end('NOT FOUND');
   }
 });
-
 
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);
