@@ -1,17 +1,5 @@
-import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import colors from 'colors';
-import queue from '../utils/asyncQueue.js';
 import mongo from '../utils/mongo.js';
-
-export default function inst(req) {
-  getDatabaseModel(callback => {
-      const institutions = callback[0]; // list of insts
-      const instList = callback[1]; // mongo doc object
-      return Promise.resolve([institutions, instList]);
-  });
-}
 
 function getDatabaseModel(callback) {
     let institutions = undefined;
@@ -37,7 +25,7 @@ function getDatabaseModel(callback) {
 }
 
 function processModel(instList) {
-    const institutions = [];
+    let institutions = [];
 
     for(let i = 0; i < instList.length; i++) {
         const collegeName = instList[i].institution.Name;
@@ -62,4 +50,14 @@ function sortInstitutionList(list) {
     });
 
     return list;
+}
+
+export default function inst(req) {
+  var func = getDatabaseModel(callback => {
+      let institutions = callback[0]; // list of insts
+      let instList = callback[1]; // mongo doc object
+      return Promise.resolve(null);
+  });
+
+  return Promise.resolve(func);
 }

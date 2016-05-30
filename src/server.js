@@ -49,11 +49,16 @@ server.on('upgrade', (req, socket, head) => {
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {
   let json;
-  if (error.code !== 'ECONNRESET') {
+  if (error.code !== 'ECONNRESET' && error.code !== 'ECONNREFUSED') {
     console.error('proxy error', error);
   }
+
+  if(error.code === 'ECONNREFUSED') {
+    console.log('Connection refused, trying again...')
+  }
+
   if (!res.headersSent) {
-    res.writeHead(500, {'content-type': 'application/json'});
+    if (typeof res.writeHead === 'function') res.writeHead(500, {'content-type': 'application/json'});
   }
 
   json = {error: 'proxy_error', reason: error.message};
