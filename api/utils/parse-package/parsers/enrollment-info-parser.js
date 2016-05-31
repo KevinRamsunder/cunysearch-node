@@ -3,9 +3,9 @@ import cheerio from 'cheerio';
 const EnrollmentInfoParser = function(htmlPage) {
     this.$ = cheerio.load(htmlPage);
 
-    cap = resultsToArray(this.$, '[id=SSR_CLS_DTL_WRK_ENRL_CAP]');
-    tot = resultsToArray(this.$, '[id=SSR_CLS_DTL_WRK_ENRL_TOT]');
-    avail = resultsToArray(this.$, '[id=SSR_CLS_DTL_WRK_AVAILABLE_SEATS]');
+    let cap = resultsToArray(this.$, '[id=SSR_CLS_DTL_WRK_ENRL_CAP]');
+    let tot = resultsToArray(this.$, '[id=SSR_CLS_DTL_WRK_ENRL_TOT]');
+    let avail = resultsToArray(this.$, '[id=SSR_CLS_DTL_WRK_AVAILABLE_SEATS]');
 
     this.classCapacity = parseInt(cap[0], 10);
     this.classTotal = parseInt(tot[0], 10);

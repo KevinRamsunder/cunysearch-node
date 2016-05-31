@@ -1,0 +1,27 @@
+.container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.custom-btn {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.custom-submit {
+    margin-top: 50px;
+}
+
+.dropdown-menu.ng-isolate-scope {
+    position: absolute;
+}
+
+@media screen and (max-width: 991px) {
+    .dropdown-menu.ng-isolate-scope {
+        position: fixed;
+    }
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

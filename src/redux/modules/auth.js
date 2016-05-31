@@ -84,12 +84,14 @@ export function load() {
   };
 }
 
-export function login(name) {
+export function login() {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/login', {
+    promise: (client) => client.post('/searchRequest', {
       data: {
-        name: name
+        'inst': {'name': 'QNS01', 'htmlKey': 'QNS01'},
+        'term': {'name': '1169', 'htmlKey': '1169'},
+        'dept': {'name': 'CSCI', 'htmlKey': 'CSCI'}
       }
     })
   };

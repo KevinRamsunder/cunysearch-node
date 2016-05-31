@@ -28,7 +28,6 @@ app.use(session({
 
 app.use(bodyParser.json());
 
-
 app.use((req, res) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 

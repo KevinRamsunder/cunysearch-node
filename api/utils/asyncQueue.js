@@ -12,7 +12,7 @@ const queue = async.queue((task, callback) => {
     // submit server connect, scrape and parse
     bot.submitSearch(task.inst, task.term, task.dept, task.nbr, (val, botRef) => {
         // if queue is given a class ID, submit am additional request to get the seat info
-        if(!task.nbr) {
+        if(task.nbr) {
             botRef.submitClass('MTG_CLASSNAME$0', (val, botRef) => {
                 callback(val, botRef);
             });
