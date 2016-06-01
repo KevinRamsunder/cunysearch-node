@@ -74,6 +74,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
+  console.log(globalState.auth && globalState.auth.loaded);
   return globalState.auth && globalState.auth.loaded;
 }
 
@@ -84,14 +85,12 @@ export function load() {
   };
 }
 
-export function login() {
+export function login(name) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/searchRequest', {
+    promise: (client) => client.post('/login', {
       data: {
-        'inst': {'name': 'QNS01', 'htmlKey': 'QNS01'},
-        'term': {'name': '1169', 'htmlKey': '1169'},
-        'dept': {'name': 'CSCI', 'htmlKey': 'CSCI'}
+        'name': name
       }
     })
   };

@@ -3,6 +3,8 @@ import multireducer from 'multireducer';
 import { routerReducer } from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 
+import search from './search';
+
 import auth from './auth';
 import counter from './counter';
 import {reducer as form} from 'redux-form';
@@ -20,5 +22,6 @@ export default combineReducers({
     counter3: counter
   }),
   info,
-  widgets
+  widgets,
+  search
 });
