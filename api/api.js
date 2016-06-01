@@ -19,11 +19,10 @@ io.path('/ws');
 var FileStore = require('session-file-store')(session);
 
 app.use(session({
-    name: 'server-session-cookie-id',
-    secret: Math.random().toString(36).substring(7),
+    secret: 'eigso78r6fibilyglugrtdlkjyh57drkeo',
     store: new FileStore(),
-    saveUninitialized: true,
-    resave: true
+    saveUninitialized: false,
+    resave: false
 }));
 
 app.use(bodyParser.json());
