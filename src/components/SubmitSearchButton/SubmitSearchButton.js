@@ -1,21 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import * as authActions from 'redux/modules/auth';
+import * as searchActions from 'redux/modules/search';
 
 @connect(
   state => ({user: state.auth.user}),
-  authActions)
+  searchActions)
 export default class Login extends Component {
   static propTypes = {
-    user: PropTypes.object,
-    login: PropTypes.func,
-    logout: PropTypes.func
+    search: PropTypes.func
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.login('');
+    console.log('working');
+    this.props.search('');
   }
 
   render() {
