@@ -16,8 +16,7 @@ export default class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const input = this.refs.username;
-    // this.props.login(input.value);
-    this.props.logout();
+    this.props.login(input.value);
     input.value = '';
   }
 
