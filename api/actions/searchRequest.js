@@ -16,8 +16,8 @@ export default function searchRequest(req) {
         console.log((`Return to session @ ${req.session.id}`).yellow);
     }
 
+    // if request body is empty, exit POST request
     if(req.body.inst === undefined) {
-        req.session.save();
         return Promise.resolve(null);
     }
 
@@ -34,17 +34,12 @@ export default function searchRequest(req) {
         dept: req.session.dept
     };
 
-    // pass payload to async queue
-    const func = queue.push(params, (val, newBot) => {
-        console.log((`Cuny search complete. result length: ${val.length}`).green);
-        req.session.bot = newBot;
-        console.log(val);
-        return Promise.resolve(val);
+    // pass payload to async queue, return resolved JSON result from server
+    return new Promise((resolve, reject) => {
+      queue.push(params, (val, newBot) => {
+          console.log((`Cuny search complete. result length: ${val.length}`).green);
+          req.session.bot = newBot;
+          resolve(JSON.parse(val));
+      });
     });
-
-    // save session
-    req.session.save();
-
-    // return value to client
-    return Promise.resolve(func);
 }

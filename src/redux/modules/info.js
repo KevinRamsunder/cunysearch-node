@@ -82,7 +82,7 @@ export function isLoaded(globalState) {
 export function load() {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.get('/getInfo')
+    promise: (client) => client.get('/loadInfo')
     // promise: (client) => client.post('/searchRequest', {
     //   data: {
     //     'name': 'yobo',

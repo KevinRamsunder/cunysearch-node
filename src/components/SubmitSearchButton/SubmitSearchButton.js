@@ -4,17 +4,16 @@ import Helmet from 'react-helmet';
 import * as searchActions from 'redux/modules/search';
 
 @connect(
-  state => ({user: state.auth.user}),
+  state => ({user: state}),
   searchActions)
 export default class Login extends Component {
   static propTypes = {
-    search: PropTypes.func
+    query: PropTypes.func
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('working');
-    this.props.search('');
+    this.props.query();
   }
 
   render() {
