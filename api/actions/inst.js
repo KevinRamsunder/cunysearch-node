@@ -53,11 +53,10 @@ function sortInstitutionList(list) {
 }
 
 export default function inst(req) {
-  var func = getDatabaseModel(callback => {
-      let institutions = callback[0]; // list of insts
-      let instList = callback[1]; // mongo doc object
-      return Promise.resolve(null);
+  // pass payload to async queue, return resolved JSON result from server
+  return new Promise((resolve, reject) => {
+    getDatabaseModel(callback => {
+      resolve(callback[0], callback[1]);
+    });
   });
-
-  return Promise.resolve(func);
 }
