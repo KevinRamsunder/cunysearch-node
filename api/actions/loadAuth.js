@@ -1,3 +1,3 @@
 export default function loadAuth(req) {
-  return Promise.resolve(req.session.name || null);
+  return Promise.resolve(req.session.user || null);
 }

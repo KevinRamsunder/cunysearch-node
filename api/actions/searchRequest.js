@@ -9,14 +9,14 @@ export default function searchRequest(req) {
     console.log("Received request at /search-request");
 
     // if session already exists, continue that session
-    if(req.session.user === undefined) {
-        req.session.user = req.sessionID;
-        console.log((`session created @ ${req.session.id}`).yellow);
+    if(req.session.init === undefined) {
+        req.session.init = req.sessionID;
+        console.log((`Session created @ ${req.session.id}`).yellow);
     } else {
         console.log((`Return to session @ ${req.session.id}`).yellow);
     }
 
-    // if request body is empty, exit POST request
+    // if request body is empty, resolve POST request immediately
     if(req.body.inst === undefined) {
         return Promise.resolve(null);
     }
