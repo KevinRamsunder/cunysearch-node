@@ -57,14 +57,15 @@ export function getInsts() {
     promise: (client) => client.get('/inst')
   };
 }
-export function query() {
+
+export function query(inst, term, dept) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.post('/searchRequest', {
       data: {
-        'inst': {'name': 'QNS01', 'htmlKey': 'QNS01'},
-        'term': {'name': '1169', 'htmlKey': '1169'},
-        'dept': {'name': 'CSCI', 'htmlKey': 'CSCI'}
+        'inst': inst,
+        'term': {name: term.Name, htmlKey: term.HtmlKey},
+        'dept': {name: dept.Name, htmlKey: dept.HtmlKey}
       }
     })
   };
