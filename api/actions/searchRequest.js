@@ -1,4 +1,3 @@
-import colors from 'colors';
 import Bot from '../utils/bot.js';
 import queue from '../utils/asyncQueue.js';
 
@@ -11,9 +10,9 @@ export default function searchRequest(req) {
   // if session already exists, continue that session
   if(req.session.init === undefined) {
     req.session.init = req.sessionID;
-    console.log((`Session created @ ${req.session.id}`).yellow);
+    console.log(`Session created @ ${req.session.id}`);
   } else {
-    console.log((`Return to session @ ${req.session.id}`).yellow);
+    console.log(`Return to session @ ${req.session.id}`);
   }
 
   // if request body is empty, resolve POST request immediately
@@ -37,7 +36,7 @@ export default function searchRequest(req) {
   // pass payload to async queue, return resolved JSON result from server
   return new Promise((resolve, reject) => {
     queue.push(params, (val, newBot) => {
-      console.log((`Cuny search complete. result length: ${val.length}`).green);
+      console.log(`Cuny search complete. result length: ${val.length}`);
       req.session.bot = newBot;
       resolve(JSON.parse(val));
     });

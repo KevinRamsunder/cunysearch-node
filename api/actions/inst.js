@@ -57,7 +57,7 @@ export default function inst(req) {
   // pass payload to async queue, return resolved JSON result from server
   return new Promise((resolve, reject) => {
     getDatabaseModel(callback => {
-      resolve(callback[0], callback[1]);
+      resolve(callback);
     });
   });
 }
