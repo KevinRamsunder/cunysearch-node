@@ -7,3 +7,5 @@ export Login from './Login/Login';
 export LoginSuccess from './LoginSuccess/LoginSuccess';
 export Survey from './Survey/Survey';
 export NotFound from './NotFound/NotFound';
+export SubmitSearchButton from './SubmitSearchButton/SubmitSearchButton';
+export Table from './Table/Table';
