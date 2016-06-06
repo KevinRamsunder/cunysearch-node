@@ -9,7 +9,7 @@
     width: $size;
     height: $size;
     background-size: 80%;
-    margin: 0 10px 0 0;
+    margin: 0 0 0 0;
     border-radius: $size / 2;
   }
   nav :global(.fa) {
@@ -17,6 +17,14 @@
     line-height: 20px;
   }
 }
-.appContent {
+
+appContent {
   margin: 50px 0; // for fixed navbar
+}
+
+.jumbotron {
+  h2 {
+    text-align: center;
+  }
+  margin: 50px 0 !important;
 }
