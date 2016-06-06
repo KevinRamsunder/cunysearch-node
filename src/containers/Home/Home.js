@@ -34,13 +34,13 @@ export default class Home extends Component {
                           type="star"
                           width={160}
                           height={30}
-                          count large/>
+                          count={true} large={true}/>
             <GithubButton user="erikras"
                           repo="react-redux-universal-hot-example"
                           type="fork"
                           width={160}
                           height={30}
-                          count large/>
+                          count={true} large={true}/>
 
             <p className={styles.humility}>
               Created and maintained by <a href="https://twitter.com/erikras" target="_blank">@erikras</a>.
