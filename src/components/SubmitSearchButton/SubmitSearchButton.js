@@ -69,32 +69,35 @@ export default class SubmitSearchButton extends Component {
       <div>
       {/* Only display select inputs if app is mounted */}
       {(appIsMounted) &&
-        <div className={styles + ' container'}>
+        <div className={styles.allStyles + ' container'}>
           <Helmet title="Submit Search"/>
           <h1>Submit Search</h1>
-          <div>
+          <div className="row">
             {this.props.instNames &&
-              <div id="field-institution">
+              <span className="col-md-3" id="field-institution">
                 <Typeahead class="inst" labelKey="inst" onChange={this.handleInstChange}
                   options={this.props.instNames} placeholder="Select institution..." />
-              </div>
+              </span>
             }
             {this.state.termList &&
-              <div id="field-term">
+              <span className="col-md-3" id="field-term">
                 <Typeahead class="term" labelKey="Name" options={this.state.termList}
                   placeholder="Select term..." />
-              </div>
+              </span>
             }
             {this.state.deptList &&
-              <div id="field-department">
+              <span className="col-md-3" id="field-department">
                 <Typeahead class="dept" labelKey="Name" options={this.state.deptList}
                   placeholder="Select department..." />
-              </div>
+              </span>
             }
-            <button className="btn btn-success" onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
-            </button>
+            <span className="col-md-3">
+              <button className={styles.button + ' btn btn-success'} onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
+              </button>
+            </span>
             {this.props.results &&
-            <BootstrapTable data={this.props.results} striped={true} hover={true} condensed={true}>
+            <BootstrapTable data={this.props.results} striped={true}
+             className={styles.bootstrapTable} hover={true} condensed={true}>
               <TableHeaderColumn dataField="title">Title</TableHeaderColumn>
               <TableHeaderColumn isKey={true} dataField="nbr">Class ID</TableHeaderColumn>
               <TableHeaderColumn dataField="time">Time</TableHeaderColumn>
