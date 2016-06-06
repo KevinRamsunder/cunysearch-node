@@ -125,6 +125,7 @@
     "pretty-error": "^1.2.0",
     "react": "^0.14.2",
     "react-bootstrap": "^0.28.1",
+    "react-bootstrap-table": "^2.3.4",
     "react-bootstrap-typeahead": "^0.5.1",
     "react-dom": "^0.14.1",
     "react-helmet": "^2.2.0",

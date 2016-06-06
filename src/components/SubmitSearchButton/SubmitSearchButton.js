@@ -4,6 +4,8 @@ import Helmet from 'react-helmet';
 import Typeahead from 'react-bootstrap-typeahead';
 import * as searchActions from 'redux/modules/search';
 
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+
 @connect(
   state => ({
     results: state.search.searchResult, // query results, class data
@@ -13,6 +15,7 @@ import * as searchActions from 'redux/modules/search';
   searchActions)
 export default class SubmitSearchButton extends Component {
   static propTypes = {
+    results: PropTypes.array, // array containing classes from search results
     query: PropTypes.func, // submit search to cuny servers
     getInsts: PropTypes.func, // function to get list of insts
     instNames: PropTypes.array, // array of institution names
@@ -90,6 +93,16 @@ export default class SubmitSearchButton extends Component {
             }
             <button className="btn btn-success" onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
             </button>
+            {this.props.results &&
+            <BootstrapTable data={this.props.results} striped={true} hover={true} condensed={true}>
+              <TableHeaderColumn dataField="title">Title</TableHeaderColumn>
+              <TableHeaderColumn isKey={true} dataField="nbr">Class ID</TableHeaderColumn>
+              <TableHeaderColumn dataField="time">Time</TableHeaderColumn>
+              <TableHeaderColumn dataField="room">Room</TableHeaderColumn>
+              <TableHeaderColumn dataField="instr">Instructor</TableHeaderColumn>
+              <TableHeaderColumn dataField="status">Status</TableHeaderColumn>
+            </BootstrapTable>
+            }
           </div>
         </div>
       }

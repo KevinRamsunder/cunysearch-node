@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
-        searchResult: action.result
+        searchResult: action.result.results
       };
     case LOAD_FAIL:
       return {
