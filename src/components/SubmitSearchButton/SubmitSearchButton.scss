@@ -2,6 +2,14 @@
   width: 100%;
 }
 
+.jumbotron {
+  h2 {
+    text-align: center;
+  }
+
+  margin: 50px 0;
+}
+
 .bootstrapTable {
   // react-bootstrap-table
   .react-bs-table-container .react-bs-table-search-form {

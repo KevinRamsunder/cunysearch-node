@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import Helmet from 'react-helmet';
 import Typeahead from 'react-bootstrap-typeahead';
 import * as searchActions from 'redux/modules/search';
 
@@ -70,8 +69,9 @@ export default class SubmitSearchButton extends Component {
       {/* Only display select inputs if app is mounted */}
       {(appIsMounted) &&
         <div className={styles.allStyles + ' container'}>
-          <Helmet title="Submit Search"/>
-          <h1>Submit Search</h1>
+          <div className={'jumbotron ' + styles.jumbotron}>
+            <h2>CUNY Course Search</h2>
+          </div>
           <div className="row">
             {this.props.instNames &&
               <span className="col-md-3" id="field-institution">
@@ -92,8 +92,7 @@ export default class SubmitSearchButton extends Component {
               </span>
             }
             <span className="col-md-3">
-              <button className={styles.button + ' btn btn-success'} onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
-              </button>
+              <button className={styles.button + ' btn btn-primary'} onClick={this.handleSubmit}>Search!</button>
             </span>
             {this.props.results &&
             <BootstrapTable data={this.props.results} striped={true}
