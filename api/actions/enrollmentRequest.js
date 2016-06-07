@@ -12,8 +12,8 @@ export default function enrollmentRequest(req) {
     inst: req.session.inst,
     term: req.session.term,
     dept: req.session.dept,
-    section: req.body.data.seatKey,
-    nbr: req.body.data.classID
+    section: req.body.seatKey,
+    nbr: req.body.classID
   };
 
   // pass payload to async queue,

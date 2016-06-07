@@ -5,12 +5,19 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
 @connect(
   state => ({
-    results: state.search.searchResult // query results, class data
+    results: state.search.searchResult, // query results, class data
+    seatResult: state.search.seatResult,
   }),
   searchActions)
 export default class Table extends Component {
   static propTypes = {
-    results: PropTypes.array // array containing classes from search results
+    results: PropTypes.array, // array containing classes from search results
+    seatResult: PropTypes.object,
+    getSeats: PropTypes.func
+  }
+
+  linkToApiEndpoint(cell, row) {
+    return ( <a onClick={() => this.props.getSeats(row.htmlKey, row.nbr)}>{cell}</a> );
   }
 
   render() {
@@ -20,7 +27,9 @@ export default class Table extends Component {
       {this.props.results &&
         <div className={styles.spacedTable}>
           <BootstrapTable data={this.props.results} striped={true} hover={true} condensed={true}>
-            <TableHeaderColumn dataField="title">Title</TableHeaderColumn>
+            <TableHeaderColumn dataField="title" dataFormat={this.linkToApiEndpoint.bind(this)}>
+            Title
+            </TableHeaderColumn>
             <TableHeaderColumn isKey={true} dataField="nbr">Class ID</TableHeaderColumn>
             <TableHeaderColumn dataField="time">Time</TableHeaderColumn>
             <TableHeaderColumn dataField="room">Room</TableHeaderColumn>

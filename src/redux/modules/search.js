@@ -42,6 +42,20 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         error: action.error
       };
+    case 'SEATS':
+      return {
+        ...state,
+      };
+    case 'SEATS_SUCCESS':
+      return {
+        ...state,
+        seatResult: action.result
+      };
+    case 'SEATS_FAIL':
+      return {
+        ...state,
+        error: action.error
+      };
     default:
       return state;
   }
@@ -66,6 +80,18 @@ export function query(inst, term, dept) {
         'inst': inst,
         'term': {name: term.Name, htmlKey: term.HtmlKey},
         'dept': {name: dept.Name, htmlKey: dept.HtmlKey}
+      }
+    })
+  };
+}
+
+export function getSeats(htmlKey, nbr) {
+  return {
+    types: ['SEATS', 'SEATS_SUCCESS', 'SEATS_FAIL'],
+    promise: (client) => client.post('/enrollmentRequest', {
+      data: {
+        'seatKey': htmlKey,
+        'classID': nbr
       }
     })
   };
