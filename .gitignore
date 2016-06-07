@@ -1,2 +1,10 @@
+.idea/
+node_modules/
+dist/
+*.iml
+webpack-assets.json
+webpack-stats.json
+npm-debug.log
+*sessions/
 node_modules/*
 node/server/sessions/*
