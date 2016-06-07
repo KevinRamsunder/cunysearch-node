@@ -17,7 +17,7 @@ export default class Table extends Component {
   }
 
   linkToApiEndpoint(cell, row) {
-    return ( <a onClick={() => this.props.getSeats(row.htmlKey, row.nbr)}>{cell}</a> );
+    return ( <a href="#" onClick={() => this.props.getSeats(row.htmlKey, row.nbr)}>{cell}</a> );
   }
 
   render() {
