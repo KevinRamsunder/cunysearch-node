@@ -19,6 +19,9 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
+import {CronJob} from 'cron';
+import mongo from '../api/utils/mongo.js';
+
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
 const app = new Express();
@@ -81,6 +84,7 @@ app.use((req, res) => {
       ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store}/>));
   }
 
+  //
   if (__DISABLE_SSR__) {
     hydrateOnClient();
     return;
@@ -114,14 +118,48 @@ app.use((req, res) => {
   });
 });
 
-if (config.port) {
-  server.listen(config.port, (err) => {
-    if (err) {
-      console.error(err);
-    }
-    console.info('----\n==> ✅  %s is running, talking to API server on %s.', config.app.title, config.apiPort);
-    console.info('==> 💻  Open http://%s:%s in a browser to view the app.', config.host, config.port);
-  });
-} else {
-  console.error('==>     ERROR: No PORT environment variable has been specified');
+//
+function startServer() {
+  if (config.port) {
+    server.listen(config.port, (err) => {
+      if (err) {
+        console.error(err);
+      }
+      console.info('----\n==> ✅  %s is running, talking to API server on %s.', config.app.title, config.apiPort);
+      console.info('==> 💻  Open http://%s:%s in a browser to view the app.', config.host, config.port);
+    });
+  } else {
+    console.error('==>     ERROR: No PORT environment variable has been specified');
+  }
 }
+
+// start server if database is populated, else populate db then start server
+console.log('\nChecking database...\n');
+mongo.School.count({}, function(err, count) {
+  // db is not populated
+  if(count < 5) {
+    mongo.populateDatabase(err => {
+      if (err) {
+        console.log('\nDatabase unable to populate, CUNYFirst may have changed.');
+        console.log('Program will terminate.\n');
+      } else {
+        console.log('\nDatabase populated successfully.\n');
+        startServer();
+      }
+    });
+  } else {
+    console.log('Database already populated!', count);
+    startServer();
+  }
+});
+
+// cron job to update db periodically
+new CronJob('00 00 2 * * 3', () => {
+  mongo.populateDatabase(err => {
+    if(err) {
+      console.log('Cron Job unable to run.');
+    } else {
+      console.log('Cron Job ran successfully.');
+    }
+  });
+}, null, true, 'America/New_York');

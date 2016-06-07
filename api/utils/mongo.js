@@ -1,5 +1,4 @@
 import async from 'async';
-import {CronJob} from 'cron';
 import mongoose from 'mongoose';
 
 import config from './config.js';
@@ -7,16 +6,6 @@ import InfoBot from './infoBot.js';
 
 // connect to database
 mongoose.connect('mongodb://localhost/' + config.mongo.db);
-
-new CronJob('00 00 2 * * 3', () => {
-  populateDatabase(err => {
-    if(err) {
-      console.log('Cron Job unable to run.');
-    } else {
-      console.log('Cron Job ran successfully.');
-    }
-  });
-}, null, true, 'America/New_York');
 
 // database schema
 const School = mongoose.model("School", {
@@ -125,5 +114,6 @@ function populateDatabase(callback) {
 }
 
 export default {
-  populateDatabase
+  populateDatabase,
+  School
 };
