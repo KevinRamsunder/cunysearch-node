@@ -1,8 +1,10 @@
 # React Redux Universal Hot Example
 
+#### [Demo.](https://my-lifes-work.herokuapp.com) (may be unstable! pre-alpha build)
 ### CUNY Search - Reactifying (WIP) 
 
 #### Installation
+
 separate terminal: `mongod` start mongoDB
 
 `npm install` install dependencies
