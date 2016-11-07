@@ -20,9 +20,12 @@ export default function enrollmentRequest(req) {
   // return resolved JSON result from server
   return new Promise((resolve, reject) => {
     queue.push(params, (val, newBot) => {
-      console.log(val);
       req.session.searchBot = newBot;
-      resolve(JSON.parse(val));
+
+      let resolvedJSON = JSON.parse(val);
+      resolvedJSON['nbr'] = params.nbr;
+      console.log(resolvedJSON);
+      resolve(resolvedJSON);
     });
   });
 };
